@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: big-event
+  #?????
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${big-event.datasource.url}
+    username: root
+    password: ${big-event.datasource.password}
+  #??????
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+  #????
+  mail:
+    host: smtp.qq.com
+    port: 587
+    username: ${big-event.mail.username}
+    password: ${big-event.mail.password}
+    properties:
+      "mail.transport.protocol": smtp
+      "mail.smtp.auth": true
+      "mail.smtp.starttls.enable": true
+      "mail.debug": true
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  profiles:
+    active: dev
+
+#mybatis????
+mybatis:
+  configuration:
+    #??????sql??
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #????-???????
+    map-underscore-to-camel-case: true
+
+#???oss
+aliyun:
+  oss:
+    endpoint: ${big-event.aliyun.oss.endpoint}
+    accessKeyId: ${big-event.aliyun.oss.accessKeyId}
+    accessKeySecret: ${big-event.aliyun.oss.accessKeySecret}
+    bucketName: ${big-event.aliyun.oss.bucketName}
